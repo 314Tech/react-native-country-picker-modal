@@ -1,0 +1,45 @@
+import React from 'react';
+import {
+  Image,
+  StyleSheet,
+  TouchableNativeFeedback,
+  View,
+  Platform,
+} from 'react-native';
+
+const styles = StyleSheet.create({
+  closeButton: {
+    height: 56,
+    padding: 16,
+    borderTopWidth: 1,
+    borderTopColor: 'white',
+  },
+  closeButtonImage: {
+    height: 24,
+    width: 24,
+    resizeMode: 'contain',
+  },
+});
+
+const CloseButton = (props) => (
+  <View style={styles.closeButton}>
+    <TouchableNativeFeedback
+      background={
+        Platform.Version < 21 ?
+        TouchableNativeFeedback.SelectableBackground()
+        :
+        TouchableNativeFeedback.SelectableBackgroundBorderless()
+      }
+      {...props}
+    >
+      <View>
+        <Image
+          source={require('./android-close.png')}
+          style={styles.closeButtonImage}
+        />
+      </View>
+    </TouchableNativeFeedback>
+  </View>
+);
+
+export default CloseButton;
